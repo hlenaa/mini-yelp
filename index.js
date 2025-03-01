@@ -8,6 +8,8 @@ import cityRoutes from './routers/cityRouter.js';
 import errorMiddleware from './middleware/errorMiddleware.js';  
 import { getTags, createTag, getTagById, updateTag, deleteTag } from './controllers/tag.js';
 import tagRouter from './routers/tagRouter.js';
+import associations from './db/associations.js';
+
 dotenv.config();  
 
 const app = express();
@@ -20,6 +22,8 @@ app.use('/api/cities', cityRoutes);
 app.use('/api/tags', tagRouter);
 
 app.use(errorMiddleware);
+
+associations(); 
 
 sequelize.sync()
   .then(() => {

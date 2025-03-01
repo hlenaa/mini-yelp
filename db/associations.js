@@ -1,10 +1,10 @@
 
 
-import Comment from  './models/Comment';
-import Restaurant from './models/Restaurant';
-import City from './models/City';
-import Tag from './models/Tag';
-import  RestaurantHasTag from './models/RestaurantHasTag';
+import Comment from  '../models/Comment.js';
+import Restaurant from '../models/restaurant.js';
+import City from '../models/City.js';
+import Tag from '../models/Tag.js';
+import  RestaurantHasTag from '../models/RestaurantHasTag.js';
 
 function associations() {
   City.hasMany(Restaurant, {

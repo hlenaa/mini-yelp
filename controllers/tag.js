@@ -1,5 +1,5 @@
 import Tag from "../models/Tag.js";
-import Restaurant from "../models/Restaurant.js";
+import Restaurant from "../models/restaurant.js";
 import ExtendedError from "../utils/ExtendedError.js";
 
 export const getTags = async (req, res) => {
