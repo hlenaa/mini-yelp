@@ -7,7 +7,6 @@ import commentRoutes from './routers/commentRouter.js';
 import restaurantRoutes from './routers/restaurants.js';  
 import cityRoutes from './routers/cityRouter.js';  
 import errorMiddleware from './middleware/errorMiddleware.js';  
-import { getTags, createTag, getTagById, updateTag, deleteTag } from './controllers/tag.js';
 import tagRouter from './routers/tagRouter.js';
 dotenv.config();  
 
