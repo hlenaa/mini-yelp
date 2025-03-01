@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
 import sequelize from './db/index.js';  
+import associations from './db/associations.js';
 import commentRoutes from './routers/commentRouter.js'; 
 import restaurantRoutes from './routers/restaurants.js';  
 import cityRoutes from './routers/cityRouter.js';  
@@ -13,6 +14,8 @@ dotenv.config();
 const app = express();
 
 app.use(bodyParser.json());
+
+associations();
 
 app.use('/api/comments', commentRoutes);
 app.use('/api/restaurants', restaurantRoutes);

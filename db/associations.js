@@ -1,12 +1,10 @@
-
-
-import Comment from  './models/Comment';
-import Restaurant from './models/Restaurant';
-import City from './models/City';
-import Tag from './models/Tag';
-import  RestaurantHasTag from './models/RestaurantHasTag';
+import Comment from '../models/Comment.js';
+import Restaurant from '../models/Restaurant.js';
+import City from '../models/City.js';
+import Tag from '../models/Tag.js';
 
 function associations() {
+  // ✅ One-to-Many: City ↔ Restaurants
   City.hasMany(Restaurant, {
     foreignKey: 'city_id',
     as: 'restaurants'
@@ -17,6 +15,7 @@ function associations() {
     as: 'city'
   });
 
+  // ✅ One-to-Many: Restaurant ↔ Comments
   Restaurant.hasMany(Comment, {
     foreignKey: 'restaurant_id',
     as: 'comments'
@@ -27,19 +26,20 @@ function associations() {
     as: 'restaurant'
   });
 
+  // ✅ Many-to-Many: Restaurants ↔ Tags (via "restaurant_has_tag" junction table)
   Restaurant.belongsToMany(Tag, {
-    through: RestaurantHasTag,
-    foreignKey: 'id_restaurant',
-    otherKey: 'id_tag',
-    as: 'tags'
+    through: "restaurant_has_tag",  // ✅ Automatically creates the table
+    foreignKey: "id_restaurant",
+    otherKey: "id_tag",
+    as: "tags"
   });
-  
+
   Tag.belongsToMany(Restaurant, {
-    through: RestaurantHasTag,
-    foreignKey: 'id_tag',
-    otherKey: 'id_restaurant',
-    as: 'restaurants'
+    through: "restaurant_has_tag",  // ✅ Automatically creates the table
+    foreignKey: "id_tag",
+    otherKey: "id_restaurant",
+    as: "restaurants"
   });
 }
 
-export default  associations;
+export default associations;

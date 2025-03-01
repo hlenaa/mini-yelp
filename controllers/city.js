@@ -3,7 +3,7 @@ import Restaurant from "../models/Restaurant.js";
 import ExtendedError from "../utils/ExtendedError.js";
 
 export const getCity = async (req, res) => {
-  const cities = await City.findAll({ include: Restaurant });
+  const cities = await City.findAll({ model: Restaurant, as: "restaurants" });
   res.json(cities);
 };
 
@@ -24,7 +24,7 @@ export const createCity = async (req, res) => {
 
 export const getCityById = async (req, res) => {
   const { id } = req.params;
-  const city = await City.findByPk(id, { include: Restaurant });
+  const city = await City.findByPk(id, { model: Restaurant, as: "restaurants" });
   if (!city) {
     throw new ExtendedError(404, "City not found");
   }
