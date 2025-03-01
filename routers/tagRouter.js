@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import {
-    getTag,
+    getTags,
     createTag,
     getTagById,
     updateTag,
@@ -11,7 +11,7 @@ import {
 const tagRouter = Router();
 
 tagRouter.route('/')
-    .get(getTag)
+    .get(getTags)
     .post(createTag);
 
 tagRouter.route('/:id')

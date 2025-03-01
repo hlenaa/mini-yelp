@@ -1,10 +1,18 @@
-const express = require('express');
-const router = express.Router();
-const restaurantController = require('../controllers/restaurants');
+import express from 'express';
+import { 
+    getAllRestaurants, 
+    getRestaurantById, 
+    createRestaurant, 
+    updateRestaurant, 
+    deleteRestaurant 
+} from '../controllers/restaurants.js';  
 
-router.get('/', restaurantController.getAllRestaurants);
-router.get('/:id', restaurantController.getRestaurantById);
-router.post('/', restaurantController.createRestaurant);
-// Add routes for PUT /restaurants/:id and DELETE /restaurants/:id
+const router = express.Router();  
 
-module.exports = router;
+router.get('/', getAllRestaurants);
+router.get('/:id', getRestaurantById);
+router.post('/', createRestaurant);
+router.put('/:id', updateRestaurant);
+router.delete('/:id', deleteRestaurant);
+
+export default router;  

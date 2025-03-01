@@ -1,6 +1,6 @@
-const { Restaurant, Tag, City, Comment } = require('../models');
+import { Restaurant, Tag, City, Comment } from '../models/index.js';
 
-exports.getAllRestaurants = async (req, res) => {
+const getAllRestaurants = async (req, res) => {
     try {
         const restaurants = await Restaurant.findAll({
             include: [
@@ -15,8 +15,10 @@ exports.getAllRestaurants = async (req, res) => {
         res.status(500).json({ message: 'Server Error' });
     }
 };
+export default getAllRestaurants;
 
-exports.getRestaurantById = async (req, res) => {
+
+const getRestaurantById = async (req, res) => {
     try {
         const restaurant = await Restaurant.findByPk(req.params.id, {
             include: [
@@ -35,7 +37,7 @@ exports.getRestaurantById = async (req, res) => {
     }
 };
 
-exports.createRestaurant = async (req, res) => {
+const createRestaurant = async (req, res) => {
     try {
         const restaurant = await Restaurant.create(req.body);
         res.status(201).json(restaurant);
@@ -45,7 +47,7 @@ exports.createRestaurant = async (req, res) => {
     }
 };
 
-exports.updateRestaurant = async (req, res) => {
+const updateRestaurant = async (req, res) => {
     try {
         const [updated] = await Restaurant.update(req.body, {
             where: { id: req.params.id }
@@ -61,7 +63,7 @@ exports.updateRestaurant = async (req, res) => {
     }
 };
 
-exports.deleteRestaurant = async (req, res) => {
+const deleteRestaurant = async (req, res) => {
     try {
         const deleted = await Restaurant.destroy({
             where: { id: req.params.id }
@@ -75,3 +77,5 @@ exports.deleteRestaurant = async (req, res) => {
         return res.status(500).json({ message: 'Server Error' });
     }
 };
+
+export { getAllRestaurants, getRestaurantById, createRestaurant, updateRestaurant, deleteRestaurant };
