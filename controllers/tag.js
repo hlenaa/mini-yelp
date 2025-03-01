@@ -2,10 +2,12 @@ import Tag from "../models/Tag.js";
 import Restaurant from "../models/Restaurant.js";
 import ExtendedError from "../utils/ExtendedError.js";
 
-export const getTag = async (req, res) => {
+export const getTags = async (req, res) => {
   const cities = await Tag.findAll({ include: Restaurant });
   res.json(cities);
 };
+
+export default getTags;
 
 export const createTag = async (req, res) => {
   const { name } = req.body;

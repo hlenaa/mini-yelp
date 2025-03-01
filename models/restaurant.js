@@ -1,5 +1,5 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../db/index').sequelize;
+import { DataTypes } from 'sequelize';
+import sequelize from '../db/index.js';
 
 const Restaurant = sequelize.define('Restaurant', {
     id: {
@@ -25,13 +25,6 @@ const Restaurant = sequelize.define('Restaurant', {
     email: {
         type: DataTypes.STRING
     },
-    
 });
 
-Restaurant.associate = (models) => {
-    Restaurant.belongsTo(models.City, { foreignKey: 'city_id' });
-    Restaurant.belongsToMany(models.Tag, { through: 'Restaurant_has_Tag', foreignKey: 'id_restaurant' });
-    Restaurant.hasMany(models.Comment, { foreignKey: 'restaurant_id' });
-};
-
-module.exports = Restaurant;
+export default Restaurant; 
