@@ -1,7 +1,11 @@
-import Comment from '../models/Comment.js';
-import Restaurant from '../models/Restaurant.js';
+
+
+import Comment from  '../models/Comment.js';
+import Restaurant from '../models/restaurant.js';
 import City from '../models/City.js';
 import Tag from '../models/Tag.js';
+import  RestaurantHasTag from '../models/RestaurantHasTag.js';
+
 
 function associations() {
   // ✅ One-to-Many: City ↔ Restaurants

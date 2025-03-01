@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../db/index.js';  
-
+import Restaurant from './restaurant.js';
 
 const Comment = sequelize.define('Comment', {
   username: {
@@ -33,12 +33,6 @@ const Comment = sequelize.define('Comment', {
   },
 });
 
-Comment.associate = (models) => {
-  Comment.belongsTo(models.Restaurant, {
-    foreignKey: 'restaurantId',
-    as: 'restaurant', 
-  });
-};
 
 Comment.sync()
   .then(() => console.log('Comment table created or updated'))
