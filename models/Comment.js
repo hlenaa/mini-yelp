@@ -1,21 +1,33 @@
-
 import { DataTypes } from 'sequelize';
-//import sequelize from '../db/associations.js';
+import sequelize from '../db/index.js';  
+
 
 const Comment = sequelize.define('Comment', {
+  username: {
+    type: DataTypes.STRING,
+    allowNull: false, 
+  },
+  tag: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  }, 
+  city: {
+    type: DataTypes.STRING,
+    allowNull: true, 
+  },
   content: {
     type: DataTypes.TEXT,
-    allowNull: false,
+    allowNull: false, 
   },
   rating: {
     type: DataTypes.FLOAT,
-    allowNull: true,
+    allowNull: true, 
   },
   restaurantId: {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: 'Restaurants', 
+      model: 'Restaurants',  
       key: 'id',
     },
   },
@@ -24,12 +36,12 @@ const Comment = sequelize.define('Comment', {
 Comment.associate = (models) => {
   Comment.belongsTo(models.Restaurant, {
     foreignKey: 'restaurantId',
-    as: 'restaurant',
+    as: 'restaurant', 
   });
 };
 
 Comment.sync()
-  .then(() => console.log('Comment table created'))
-  .catch((err) => console.error('Error creating Comment table:', err));
+  .then(() => console.log('Comment table created or updated'))
+  .catch((err) => console.error('Error creating/updating Comment table:', err));
 
 export default Comment;

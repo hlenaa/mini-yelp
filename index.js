@@ -1,4 +1,4 @@
-import { Sequelize } from 'sequelize';
+import sequelize  from './db/index.js';
 import express from 'express';
 import bodyParser from 'body-parser';
 import commentRoutes from './routers/commentRouter.js'; 
@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 app.use('/api', commentRoutes); 
 
-Sequelize.sync()
+sequelize.sync()
   .then(() => {
     console.log('Database synced!');
   })
