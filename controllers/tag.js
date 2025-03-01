@@ -3,7 +3,7 @@ import Restaurant from "../models/restaurant.js";
 import ExtendedError from "../utils/ExtendedError.js";
 
 export const getTags = async (req, res) => {
-  const cities = await Tag.findAll({ include: Restaurant });
+  const cities = await Tag.findAll({ model: Restaurant, as: "restaurants" });
   res.json(cities);
 };
 
@@ -26,7 +26,7 @@ export const createTag = async (req, res) => {
 
 export const getTagById = async (req, res) => {
   const { id } = req.params;
-  const tag = await Tag.findByPk(id, { include: Restaurant });
+  const tag = await Tag.findByPk(id, { model: Restaurant, as: "restaurants" });
   if (!tag) {
     throw new ExtendedError(404, "Tag not found");
   }
